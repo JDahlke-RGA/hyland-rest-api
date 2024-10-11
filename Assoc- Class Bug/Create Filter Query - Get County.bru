@@ -1,0 +1,40 @@
+meta {
+  name: Create Filter Query - Get County
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/workview/v2/object-queries
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+    "classId": {{countyClassId}},
+    "columns": [    
+      {
+        "dataAddress": {{idAttribute}}
+      },    
+      {
+        "dataAddress": {{nameAttribute}}
+      }
+    ],
+    "constraints": [],
+    "sorts": [],
+    "maxResults": 2000,
+    "returnDistinctResults": "false"
+  }
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.queryId;
+  console.log(item);
+  // pm.globals.set("query-id", jsonData.queryId);
+}

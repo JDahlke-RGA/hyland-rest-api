@@ -1,0 +1,41 @@
+meta {
+  name: Execute API Task - Get DocPop Link
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/workflow/api-tasks/{{taskId}}/execute
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+      "allowedInteractions": [ "MessageBox" ],
+      "data": {
+          "Relation": {
+              "documentHandle": 1455
+          },
+          "Prop": {
+              "ReadOnly": true
+              
+          }
+      }
+  }
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.userInteraction.message.replaceAll("&amp;","&");
+  console.log(item)
+  bru.setVar("docPopLink", item);
+  let operationId = jsonData.operationId;
+  console.log(operationId)
+  // pm.globals.set("operationId", operationId);
+  
+}

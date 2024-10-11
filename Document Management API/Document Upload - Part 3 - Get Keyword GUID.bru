@@ -1,0 +1,24 @@
+meta {
+  name: Document Upload - Part 3 - Get Keyword GUID
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/document-types/117/default-keywords
+  body: text
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+script:pre-request {
+  // pm.globals.set("documentTypeId", 69);
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  // pm.globals.set("keywordGuid", jsonData.keywordGuid);
+}

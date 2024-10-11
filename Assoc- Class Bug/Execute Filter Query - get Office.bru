@@ -1,0 +1,23 @@
+meta {
+  name: Execute Filter Query - get Office
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/v2/object-queries/{{query-id}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let items = jsonData.results.forEach(function(item){
+      
+  });
+  
+}

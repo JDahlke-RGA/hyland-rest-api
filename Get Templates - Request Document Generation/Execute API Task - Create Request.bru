@@ -1,0 +1,42 @@
+meta {
+  name: Execute API Task - Create Request
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/workflow/api-tasks/{{taskId}}/execute
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+      "allowedInteractions": [ ],
+      "data": {
+          "Relation": {
+              "id": "0a10494d-f22e-4ef9-8c07-b394db726877"
+          },
+          "Prop": {
+              "Case" : "{{requestMsg}}",
+              "Children": "{{reqKids}}",
+              "Parents": "{{reqParents}}",
+              "ChildrenSortOrder": 1,
+              "ChildrenNameFormat": 2
+          }
+      }
+  }
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let reqClassId = jsonData.apiTask.createdWorkItem.classId;
+  let objectId = jsonData.apiTask.createdWorkItem.id;
+  // pm.globals.set("objectId", objectId);
+  // pm.globals.set("reqClassId", reqClassId);
+  console.log(reqClassId, objectId);
+}

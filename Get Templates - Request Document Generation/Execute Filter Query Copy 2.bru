@@ -1,0 +1,26 @@
+meta {
+  name: Execute Filter Query Copy 2
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/v2/object-queries/{{reqQuery-id}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.results[0];
+  let key = item.key;
+  // let filename = item.attributeValues[`${pm.globals.get('tempAttribute')}.${pm.globals.get('nameAttribute')}`];
+  // let docHandle = item.attributeValues[`${pm.globals.get('documentAttribute')}`];
+  // pm.globals.set('documentHandle', docHandle);
+  // pm.globals.set('nameOfDoc', filename);
+  console.log(key, filename, docHandle);
+}

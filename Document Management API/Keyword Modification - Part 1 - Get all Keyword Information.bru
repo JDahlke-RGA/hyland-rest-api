@@ -1,0 +1,15 @@
+meta {
+  name: Keyword Modification - Part 1 - Get all Keyword Information
+  type: http
+  seq: 16
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/documents/783/keywords
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

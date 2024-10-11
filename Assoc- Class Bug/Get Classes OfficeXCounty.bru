@@ -1,0 +1,26 @@
+meta {
+  name: Get Classes OfficeXCounty
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/applications/{{applicationid}}/classes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.items.find(item => item.name == "Office");
+  let item2 = jsonData.items.find(item => item.name == "County");
+  let item3 = jsonData.items.find(item => item.name == "OfficeXCounty");
+  
+  // pm.globals.set("officeClassId", item.id);
+  // pm.globals.set("countyClassId", item2.id);
+  // pm.globals.set("AssocClassId", item3.id);
+}

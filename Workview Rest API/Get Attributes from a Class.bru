@@ -1,0 +1,21 @@
+meta {
+  name: Get Attributes from a Class
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/classes/{{templateClassId}}/attributes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  // pm.globals.set("attributeId", jsonData.items[2].id);
+  // pm.globals.set("caseData", jsonData.items[4].id);
+}

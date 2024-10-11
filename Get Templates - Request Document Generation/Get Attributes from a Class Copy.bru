@@ -1,0 +1,31 @@
+meta {
+  name: Get Attributes from a Class Copy
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/classes/{{templateClassId}}/attributes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let idAttr = jsonData.items.find(item => item.name == "Template ID");
+  let guidAttr = jsonData.items.find(item => item.name == "id");
+  let nameAttr = jsonData.items.find(item => item.name == "Name");
+  let docAttr = jsonData.items.find(item => item.name == "Document");
+  console.log(idAttr);
+  console.log(guidAttr);
+  console.log(nameAttr);
+  // pm.globals.set("guidAttribute", guidAttr.id);
+  // pm.globals.set("idAttribute", idAttr.id);
+  // pm.globals.set("nameAttribute", nameAttr.id);
+  // pm.globals.set("documentAttribute", docAttr.id);
+  
+}

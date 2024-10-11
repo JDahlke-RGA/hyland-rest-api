@@ -1,0 +1,34 @@
+meta {
+  name: Document Upload - Part 1 - Stage Request
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/core/documents/uploads
+  body: json
+  auth: bearer
+}
+
+headers {
+  Hyland-License-Type: QueryMetering
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+    "fileExtension": "png",
+    "fileSize": "5556"
+  }
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  // pm.globals.set("uploadId", jsonData.id);
+  // pm.globals.set("filepartsize", jsonData.filePartSize);
+  // pm.globals.set("numberOfParts", jsonData.numberOfParts);
+  
+}

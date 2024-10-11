@@ -1,0 +1,26 @@
+meta {
+  name: Get Attributes from a Class OfficeXCounty
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/classes/{{AssocClassId}}/attributes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let rel1 = jsonData.items[0];
+  let rel2 = jsonData.items[1];
+  
+  // pm.globals.set("rel1Id", rel1.id);
+  // pm.globals.set("rel2Id", rel2.id);
+  
+  
+}

@@ -1,0 +1,46 @@
+meta {
+  name: Reindex Document - Part 2 - Send Update Information
+  type: http
+  seq: 19
+}
+
+put {
+  url: {{origin}}{{api}}/onbase/core/documents/783
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+      "targetDocumentTypeId": "116",
+      "targetFileTypeId": "16",
+      "storeAsNew": true,
+      "comment": "You can add a comment",
+      "documentDate": "2023-05-24",
+      "keywordCollection":{
+        "keywordGuid": "{{keywordGuid}}",
+        "items": [
+          {
+            "keywords": [
+              {
+                "typeId": {{keywordTypeId}},
+                "values": [
+                  {
+                    "value": "222-22-2222"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+  }
+}
+
+tests {
+  //16
+}

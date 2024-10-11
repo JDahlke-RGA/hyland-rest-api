@@ -1,0 +1,24 @@
+meta {
+  name: Get Classes Copy
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/applications/{{applicationid}}/classes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.items.find(item => item.name == "Template");
+  let request1 = jsonData.items.find(item => item.name == "Request");
+  console.log(item, request1)
+  // pm.globals.set("templateClassId", item.id);
+  // pm.globals.set("requestClassId", request1.id);
+}

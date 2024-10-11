@@ -1,0 +1,23 @@
+meta {
+  name: Get Document
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/documents/149/revisions
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~pages: 1
+}
+
+headers {
+  Accept: */*
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

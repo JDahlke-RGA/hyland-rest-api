@@ -1,0 +1,15 @@
+meta {
+  name: Get Filters by Id
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/filters/{{filterid}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

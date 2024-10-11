@@ -1,0 +1,24 @@
+meta {
+  name: Get Attributes from a Request Class
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/classes/{{requestClassId}}/attributes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let TmpAttr = jsonData.items.find(item => item.name == "Template");
+  console.log(TmpAttr);
+  // pm.globals.set("tempAttribute", TmpAttr.id);
+  
+  
+}

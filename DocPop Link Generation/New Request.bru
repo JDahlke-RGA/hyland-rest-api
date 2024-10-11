@@ -1,0 +1,15 @@
+meta {
+  name: New Request
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workflow/healthcheck
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

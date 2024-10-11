@@ -1,0 +1,15 @@
+meta {
+  name: Get FilterBars
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/applications/1003/filter-bars
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

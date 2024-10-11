@@ -1,0 +1,22 @@
+meta {
+  name: Execute API Task - Complete Task - Unlock Document
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/workflow/tasks/operations/{{operationId}}/ui-interaction
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+      "type": "MessageBox",
+      "result": "Ok"
+  }
+}

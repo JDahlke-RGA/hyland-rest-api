@@ -1,0 +1,20 @@
+meta {
+  name: Get Filters by Class
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/classes/{{templateClassId}}/filters
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  // pm.globals.set("filterid", jsonData.items[0].id);
+}

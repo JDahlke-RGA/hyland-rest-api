@@ -1,0 +1,25 @@
+meta {
+  name: Create Template Request
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/workview/classes/{{requestClassId}}/objects
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+  "attributeValues": {
+  "{{attributeId}}": {{objectid}},
+  "{{caseData}}": "{'case':{ 'id' : '12345', 'name': 'This Case'}}"
+  },
+  "activateObject": true
+  }
+}

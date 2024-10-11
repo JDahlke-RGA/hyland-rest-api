@@ -1,0 +1,47 @@
+meta {
+  name: Create View Query for Request
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/workview/v2/object-queries
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+    "classId": "{{requestClassId}}",
+    "columns": [
+      {
+        "dataAddress": "{{tempAttribute}}.{{nameAttribute}}"
+      },
+      {
+        "dataAddress": "{{documentAttribute}}"
+      }
+    ],
+    "constraints": [
+        {
+              "dataAddress": "1",
+              "value": {{objectId}},
+              "operator": "Equal",
+              "connector": "And"
+          }
+    ],
+    "sorts": [],
+    "maxResults": 1,
+    "returnDistinctResults": "false"
+  }
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.queryId;
+  console.log(item);
+  // pm.globals.set("reqQuery-id", jsonData.queryId);
+}

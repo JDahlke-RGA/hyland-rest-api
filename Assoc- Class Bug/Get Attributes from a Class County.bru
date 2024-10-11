@@ -1,0 +1,26 @@
+meta {
+  name: Get Attributes from a Class County
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/classes/{{countyClassId}}/attributes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let idAttr = jsonData.items.find(item => item.name == "Data Value");
+  let nameAttr = jsonData.items.find(item => item.name == "Display Value");
+  
+  // pm.globals.set("idAttribute", idAttr.id);
+  // pm.globals.set("nameAttribute", nameAttr.id);
+  
+  
+}

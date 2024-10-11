@@ -1,0 +1,15 @@
+meta {
+  name: Get Dataset Values
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/datasets/1025/values
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

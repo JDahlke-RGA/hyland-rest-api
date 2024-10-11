@@ -1,0 +1,19 @@
+meta {
+  name: Get Best Guess File Type
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/default-upload-file-types?extension=tiff
+  body: json
+  auth: bearer
+}
+
+params:query {
+  extension: tiff
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

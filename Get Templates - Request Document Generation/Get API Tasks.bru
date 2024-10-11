@@ -1,0 +1,22 @@
+meta {
+  name: Get API Tasks
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workflow/api-tasks
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.items.find(item => item.systemName=="Create Template Request");
+  console.log(item)
+  // pm.globals.set("taskId", item.id);
+}

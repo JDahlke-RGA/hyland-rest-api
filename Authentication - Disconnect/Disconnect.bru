@@ -1,0 +1,15 @@
+meta {
+  name: Disconnect
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/core/session/disconnect
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

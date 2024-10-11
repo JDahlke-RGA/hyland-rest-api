@@ -1,0 +1,22 @@
+meta {
+  name: Get Applications OGC BAR
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/applications/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  let item = jsonData.items.find(item => item.name=="OGC BAR");
+  console.log(item)
+  // pm.globals.set("applicationid", item.id);
+}

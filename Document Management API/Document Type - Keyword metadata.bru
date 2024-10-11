@@ -1,0 +1,24 @@
+meta {
+  name: Document Type - Keyword metadata
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/document-types/114/keyword-type-groups
+  body: text
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+script:pre-request {
+  // pm.globals.set("documentTypeId", 304);
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  // pm.globals.set("keywordGuid", jsonData.keywordGuid);
+}

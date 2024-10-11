@@ -1,0 +1,41 @@
+meta {
+  name: Execute Filter Query
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/workview/v2/object-queries/{{queryid}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+    "classId": {{templateClassId}},
+    "columns": [
+      {
+        "dataAddress": "1206"
+      },
+      {
+        "dataAddress": "1204"
+      },
+      {
+        "dataAddress": "1205"
+      }
+    ],
+    "constraints": [],
+    "sorts": [],
+    "maxResults": 2000,
+    "returnDistinctResults": "false"
+  }
+}
+
+tests {
+  let jsonData = JSON.parse(responseBody);
+  bru.setVar("objectid", jsonData.results[0].attributeValues["1"]);
+}

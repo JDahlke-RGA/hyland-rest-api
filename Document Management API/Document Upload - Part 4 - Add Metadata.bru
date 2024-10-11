@@ -1,0 +1,37 @@
+meta {
+  name: Document Upload - Part 4 - Add Metadata
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{origin}}{{api}}/onbase/core/documents/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+    "documentTypeId": "69",
+    "storeAsNew": true,
+    "fileTypeId": "12",
+    "documentDate": "2018-02-22",
+    "uploads": [
+      {
+        "id": "{{uploadId}}"
+      }
+    ],
+    "keywordCollection": {
+        "keywordGuid": "{{keywordGuid}}",
+        "items": [
+            {
+                "keywords": []
+            }
+        ]
+      }
+  }
+}

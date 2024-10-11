@@ -1,0 +1,19 @@
+meta {
+  name: Get Document Copy
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/documents/{{documentHandle}}/revisions/latest/renditions/default/content
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/pdf
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

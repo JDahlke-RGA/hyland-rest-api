@@ -1,0 +1,61 @@
+meta {
+  name: Get Document Keywords
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/documents/149/keywords
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~pages: 1
+}
+
+headers {
+  Accept: */*
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+tests {
+  let keywords = JSON.parse(res.getBody()?.toString());
+  
+  let sak = null;
+  let sikg = [];
+  let mikg = [];
+  keywords.items.forEach(item => {
+      if(!item.typeGroupId && !item.groupId){
+          sak = item;
+      }
+      if(item.typeGroupId && !item.groupId){
+          sikg.push(item);
+      }
+      if(item.typeGroupId && item.groupId){
+          let typegroup = {
+                  typeGroupId: item.typeGroupId,
+                  records: []
+              }
+          if(mikg.length > 0 && mikg.typeGroupId == item.typeGroupId){
+              typegroup = mikg.find(i => i.typeGroupId == item.typeGroupId);
+              let obj = {
+                  groupId: item.groupId,
+                  keyowrds: item.keyowrds
+              }
+              typegroup.records.push(obj)
+          }
+          else{            
+              let obj = {
+                  groupId: item.groupId,
+                  keyowrds: item.keyowrds
+              }
+              typegroup.records.push(obj)
+          }
+      }
+  })
+  console.log(sak)
+}

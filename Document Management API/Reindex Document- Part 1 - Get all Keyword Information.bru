@@ -1,0 +1,15 @@
+meta {
+  name: Reindex Document- Part 1 - Get all Keyword Information
+  type: http
+  seq: 18
+}
+
+get {
+  url: {{origin}}{{api}}/onbase/core/documents/786/keywords
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}

@@ -1,0 +1,35 @@
+meta {
+  name: Keyword Modification - Part 2  - Send Updated Values
+  type: http
+  seq: 17
+}
+
+put {
+  url: {{origin}}{{api}}/onbase/core/documents/783/keywords
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{access_token}}
+}
+
+body:json {
+  {
+      "items": [
+          {
+              "keywords": [
+                  {
+                      "typeId": "153",
+                      "values": [
+                          {
+                              "value": "222-22-2225"
+                          }
+                      ]
+                  }
+              ]
+          }
+      ],
+      "keywordGuid": "1dbbe713-3202-4f59-9e3e-82fd9fbddb6a"
+  }
+}
