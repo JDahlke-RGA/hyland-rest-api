@@ -19,8 +19,7 @@ auth:bearer {
 }
 
 tests {
-  let results = JSON.parse(responseBody);
-  let item = results.items.find(item => item.name=="Customer Number Search");
-  // pm.globals.set('queryId', item.id);
-  console.log(item.id)
+  let results = res.body
+  let item = results.items.find(item => item.name=="AUS | Outgoing Correspondences");
+  bru.setVar('queryId', item.id);
 }

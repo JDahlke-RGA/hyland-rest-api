@@ -53,8 +53,8 @@ body:json {
 }
 
 tests {
-  let jdata = JSON.parse(responseBody);
+  let jdata = res.body;
   let id = jdata.id;
   console.log(id);
-  // pm.globals.set('queryGuid', id);
+  bru.setVar('queryGuid', id);
 }
